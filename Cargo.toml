@@ -6,3 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+approx = { version = "0.5.1", features = [] }  # for unit tests to compare only a few decimals
+
+[lib]
+path = "src/lib.rs"

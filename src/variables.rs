@@ -39,7 +39,6 @@ impl Variable1D {
 }
 
 
-
 impl Variable2D {
     // copy constructor for Variable2D
     pub fn new(var1: &Variable1D, var2: &Variable1D) -> Self {
@@ -50,7 +49,25 @@ impl Variable2D {
     }
 }
 
-trait Validate {
-    fn error_message();
-    fn valid_parameter();
+#[macro_export]
+// let my_variable = var1d!("my_variable", 1.0, 2.0, 3.0);
+macro_rules! var1d {
+    ($name:expr, $($val:expr),*) => {
+        Variable1D {
+            name: $name.to_string(),
+            values: vec![$($val),*],
+        }
+    };
+}
+
+
+#[macro_export]
+// let my_variable_2d = var2d!(variable_x, variable_y);
+macro_rules! var2d {
+    ($var1:expr, $var2:expr) => {
+        Variable2D {
+            x: $var1.clone(),
+            y: $var2.clone(),
+        }
+    };
 }
